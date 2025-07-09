@@ -42,7 +42,6 @@ const VERSION = "1";
 const STATIC_CACHE = `static-v${VERSION}`;
 const DYNAMIC_CACHE = `dynamic-v${VERSION}`;
 const FONT_CACHE = `font-cache-v${VERSION}`;
-const API_CACHE = `api-cache-v${VERSION}`;
 workbox.core.setCacheNameDetails({
   prefix: "my-app",
   suffix: VERSION,
@@ -98,21 +97,6 @@ workbox.routing.registerRoute(
       new workbox.expiration.ExpirationPlugin({
         maxEntries: 30,
         maxAgeSeconds: 365 * 24 * 60 * 60, // ۱ سال
-      }),
-    ],
-  })
-);
-workbox.routing.registerRoute(
-  ({ url }) => url.pathname.startsWith("/api"),
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: API_CACHE,
-    plugins: [
-      new workbox.cacheableResponse.CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 40,
-        maxAgeSeconds: 10 * 60, // ۱۰ دقیقه
       }),
     ],
   })
