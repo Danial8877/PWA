@@ -37,8 +37,12 @@
 
 
 
-importScripts("/assets/pwa/workbox-sw.js");
-workbox.setConfig({ debug: false });
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js');
+workbox.setConfig({ 
+  debug: false,
+  // اضافه کردن این خط برای غیرفعال کردن source maps
+  modulePathPrefix: 'https://storage.googleapis.com/workbox-cdn/releases/6.4.1/'
+});
 const VERSION = "1";
 const STATIC_CACHE = `static-v${VERSION}`;
 const DYNAMIC_CACHE = `dynamic-v${VERSION}`;
