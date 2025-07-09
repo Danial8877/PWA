@@ -43,6 +43,12 @@ const STATIC_CACHE = `static-v${VERSION}`;
 const DYNAMIC_CACHE = `dynamic-v${VERSION}`;
 const FONT_CACHE = `font-cache-v${VERSION}`;
 const API_CACHE = `api-cache-v${VERSION}`;
+workbox.core.setCacheNameDetails({
+  prefix: "my-app",
+  suffix: VERSION,
+  precache: "precache",
+  runtime: "runtime",
+});
 self.skipWaiting();
 workbox.core.clientsClaim();
 workbox.precaching.cleanupOutdatedCaches();
